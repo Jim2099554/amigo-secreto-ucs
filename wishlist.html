@@ -1,95 +1,95 @@
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="es">\
-<head>\
-  <meta charset="UTF-8"/>\
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\
-  <title>Mi Lista - Amigo Secreto UCS</title>\
-  <script src="https://cdn.tailwindcss.com"></script>\
-  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;700&display=swap" rel="stylesheet">\
-  <style>\
-    body \{ font-family: 'Spline Sans', sans-serif; \}\
-    .ucsb-red \{ background-color: #003c6c; \}\
-  </style>\
-</head>\
-<body class="bg-gray-50 text-gray-800">\
-  <header class="ucsb-red text-white p-6">\
-    <div class="max-w-5xl mx-auto flex items-center justify-between">\
-      <h1 class="text-xl font-bold">Amigo Secreto UCS</h1>\
-      <nav class="hidden md:flex gap-6 text-sm">\
-        <a href="dashboard.html" class="hover:underline">Dashboard</a>\
-        <a href="wishlist.html" class="underline font-bold">Mi Lista</a>\
-        <a href="invite.html" class="hover:underline">Invitar</a>\
-        <a href="guess.html" class="hover:underline">Adivinar</a>\
-      </nav>\
-    </div>\
-  </header>\
-\
-  <main class="max-w-5xl mx-auto p-6">\
-    <h2 class="text-3xl font-bold mb-4">Mi Lista de Deseos</h2>\
-    <p class="mb-6 text-gray-600">Agrega, edita o elimina los regalos que te gustaría recibir.</p>\
-\
-    <form id="wishForm" class="bg-white p-6 rounded-xl shadow mb-6 grid md:grid-cols-2 gap-4">\
-      <input id="giftName" type="text" placeholder="Nombre del regalo" class="p-3 border rounded" required>\
-      <input id="giftLink" type="url" placeholder="Enlace (opcional)" class="p-3 border rounded">\
-      <textarea id="giftDesc" placeholder="Descripci\'f3n" class="p-3 border rounded md:col-span-2" rows="3"></textarea>\
-      <button type="submit" class="md:col-span-2 bg-red-700 text-white py-3 rounded hover:bg-red-800">Agregar a mi Lista</button>\
-    </form>\
-\
-    <div id="wishList" class="grid md:grid-cols-3 gap-6">\
-      <!-- Ejemplo de tarjeta -->\
-      <div class="bg-white p-4 rounded-xl shadow">\
-        <img src="https://cdn.pixabay.com/photo/2016/11/23/06/57/scarf-1851620_640.jpg" alt="Bufanda" class="rounded mb-2 w-full h-32 object-cover">\
-        <h3 class="font-bold">Bufanda t\'e9rmica</h3>\
-        <p class="text-sm text-gray-600">Color vino, tejido suave</p>\
-        <div class="flex gap-2 mt-3">\
-          <button class="text-xs bg-gray-200 px-3 py-1 rounded">Editar</button>\
-          <button class="text-xs bg-red-100 text-red-700 px-3 py-1 rounded">Eliminar</button>\
-        </div>\
-      </div>\
-    </div>\
-  </main>\
-\
-  <script>\
-    // Guardar deseos en localStorage\
-    const wishList = JSON.parse(localStorage.getItem("wishes")) || [];\
-\
-    function renderWishes() \{\
-      const container = document.getElementById("wishList");\
-      container.innerHTML = "";\
-      wishList.forEach((item, i) => \{\
-        container.innerHTML += `\
-          <div class="bg-white p-4 rounded-xl shadow">\
-            <img src="https://cdn.pixabay.com/photo/2016/11/23/06/57/scarf-1851620_640.jpg" alt="Regalo" class="rounded mb-2 w-full h-32 object-cover">\
-            <h3 class="font-bold">$\{item.name\}</h3>\
-            <p class="text-sm text-gray-600">$\{item.desc\}</p>\
-            <div class="flex gap-2 mt-3">\
-              <button class="text-xs bg-gray-200 px-3 py-1 rounded">Editar</button>\
-              <button onclick="removeWish($\{i\})" class="text-xs bg-red-100 text-red-700 px-3 py-1 rounded">Eliminar</button>\
-            </div>\
-          </div>\
-        `;\
-      \});\
-    \}\
-\
-    function removeWish(index) \{\
-      wishList.splice(index, 1);\
-      localStorage.setItem("wishes", JSON.stringify(wishList));\
-      renderWishes();\
-    \}\
-\
-    document.getElementById("wishForm").addEventListener("submit", e => \{\
-      e.preventDefault();\
-      const name = document.getElementById("giftName").value.trim();\
-      const link = document.getElementById("giftLink").value.trim();\
-      const desc = document.getElementById("giftDesc").value.trim();\
-      if (!name) return;\
-      wishList.push(\{ name, link, desc \});\
-      localStorage.setItem("wishes", JSON.stringify(wishList));\
-      e.target.reset();\
-      renderWishes();\
-    \});\
-\
-    renderWishes();\
-  </script>\
-</body>\
-</html>}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Lista - Amigo Secreto UCS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Spline Sans', sans-serif; }
+    .ucsb-red { background-color: #003c6c; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header class="ucsb-red text-white p-6">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <h1 class="text-xl font-bold">Amigo Secreto UCS</h1>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="wishlist.html" class="underline font-bold">Mi Lista</a>
+        <a href="invite.html" class="hover:underline">Invitar</a>
+        <a href="guess.html" class="hover:underline">Adivinar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-6">
+    <h2 class="text-3xl font-bold mb-4">Mi Lista de Deseos</h2>
+    <p class="mb-6 text-gray-600">Agrega, edita o elimina los regalos que te gustaría recibir.</p>
+
+    <form id="wishForm" class="bg-white p-6 rounded-xl shadow mb-6 grid md:grid-cols-2 gap-4">
+      <input id="giftName" type="text" placeholder="Nombre del regalo" class="p-3 border rounded" required>
+      <input id="giftLink" type="url" placeholder="Enlace (opcional)" class="p-3 border rounded">
+      <textarea id="giftDesc" placeholder="Descripción" class="p-3 border rounded md:col-span-2" rows="3"></textarea>
+      <button type="submit" class="md:col-span-2 bg-red-700 text-white py-3 rounded hover:bg-red-800">Agregar a mi Lista</button>
+    </form>
+
+    <div id="wishList" class="grid md:grid-cols-3 gap-6">
+      <!-- Ejemplo de tarjeta -->
+      <div class="bg-white p-4 rounded-xl shadow">
+        <img src="https://cdn.pixabay.com/photo/2016/11/23/06/57/scarf-1851620_640.jpg" alt="Bufanda" class="rounded mb-2 w-full h-32 object-cover">
+        <h3 class="font-bold">Bufanda térmica</h3>
+        <p class="text-sm text-gray-600">Color vino, tejido suave</p>
+        <div class="flex gap-2 mt-3">
+          <button class="text-xs bg-gray-200 px-3 py-1 rounded">Editar</button>
+          <button class="text-xs bg-red-100 text-red-700 px-3 py-1 rounded">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Guardar deseos en localStorage
+    const wishList = JSON.parse(localStorage.getItem("wishes")) || [];
+
+    function renderWishes() {
+      const container = document.getElementById("wishList");
+      container.innerHTML = "";
+      wishList.forEach((item, i) => {
+        container.innerHTML += `
+          <div class="bg-white p-4 rounded-xl shadow">
+            <img src="https://cdn.pixabay.com/photo/2016/11/23/06/57/scarf-1851620_640.jpg" alt="Regalo" class="rounded mb-2 w-full h-32 object-cover">
+            <h3 class="font-bold">${item.name}</h3>
+            <p class="text-sm text-gray-600">${item.desc}</p>
+            <div class="flex gap-2 mt-3">
+              <button class="text-xs bg-gray-200 px-3 py-1 rounded">Editar</button>
+              <button onclick="removeWish(${i})" class="text-xs bg-red-100 text-red-700 px-3 py-1 rounded">Eliminar</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function removeWish(index) {
+      wishList.splice(index, 1);
+      localStorage.setItem("wishes", JSON.stringify(wishList));
+      renderWishes();
+    }
+
+    document.getElementById("wishForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const name = document.getElementById("giftName").value.trim();
+      const link = document.getElementById("giftLink").value.trim();
+      const desc = document.getElementById("giftDesc").value.trim();
+      if (!name) return;
+      wishList.push({ name, link, desc });
+      localStorage.setItem("wishes", JSON.stringify(wishList));
+      e.target.reset();
+      renderWishes();
+    });
+
+    renderWishes();
+  </script>
+</body>
+</html>
