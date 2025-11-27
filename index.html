@@ -1,0 +1,94 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="es">\
+<head>\
+  <meta charset="UTF-8" />\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\
+  <title>Amigo Secreto UCS</title>\
+  <script src="https://cdn.tailwindcss.com"></script>\
+  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;700&display=swap" rel="stylesheet">\
+  <style>\
+    body \{ font-family: 'Spline Sans', sans-serif; \}\
+    .ucsb-red \{ background-color: #003c6c; \}\
+    .ucsb-gold \{ color: #ffc72c; \}\
+  </style>\
+</head>\
+<body class="bg-gray-50 text-gray-800">\
+  <header class="ucsb-red text-white p-6">\
+    <div class="max-w-5xl mx-auto flex items-center justify-between">\
+      <div class="flex items-center gap-3">\
+        <span class="text-3xl">\uc0\u55356 \u57220 </span>\
+        <h1 class="text-xl font-bold">Amigo Secreto UCS</h1>\
+      </div>\
+      <button onclick="toggleLang()" class="underline ucsb-gold text-sm">ES/EN</button>\
+    </div>\
+  </header>\
+\
+  <main class="max-w-5xl mx-auto p-6 grid md:grid-cols-2 gap-10 items-center">\
+    <div>\
+      <h2 class="text-4xl font-bold mb-4">\'a1La magia navide\'f1a comienza!</h2>\
+      <p class="text-lg mb-6">Descubre a tu Amigo Secreto con pistas po\'e9ticas, juega cada d\'eda y comparte deseos.</p>\
+      <div class="flex gap-4">\
+        <button onclick="showLogin()" class="bg-red-700 text-white px-5 py-2 rounded-full hover:bg-red-800">Iniciar Sesi\'f3n</button>\
+        <button onclick="showRegister()" class="border border-red-700 text-red-700 px-5 py-2 rounded-full hover:bg-red-50">Registrarse</button>\
+      </div>\
+    </div>\
+    <div class="flex justify-center">\
+      <img src="https://cdn.pixabay.com/photo/2017/12/10/14/47/Christmas-3009949_640.png" alt="Navidad" class="w-full max-w-sm">\
+    </div>\
+  </main>\
+\
+  <section id="authForms" class="hidden max-w-xl mx-auto p-6"></section>\
+\
+  <script>\
+    const texts = \{\
+      es: \{\
+        login: "Iniciar Sesi\'f3n",\
+        register: "Registrarse",\
+        email: "Correo",\
+        password: "Contrase\'f1a",\
+        submit: "Entrar",\
+        welcome: "\'a1Bienvenido!"\
+      \},\
+      en: \{\
+        login: "Login",\
+        register: "Register",\
+        email: "Email",\
+        password: "Password",\
+        submit: "Submit",\
+        welcome: "Welcome!"\
+      \}\
+    \};\
+    let lang = "es";\
+\
+    function toggleLang() \{\
+      lang = lang === "es" ? "en" : "es";\
+      location.reload();\
+    \}\
+\
+    function showLogin() \{\
+      document.getElementById("authForms").innerHTML = `\
+        <form onsubmit="login(event)" class="bg-white p-6 rounded-xl shadow">\
+          <h3 class="text-xl font-bold mb-4">$\{texts[lang].login\}</h3>\
+          <input id="email" type="email" placeholder="$\{texts[lang].email\}" class="w-full mb-3 p-3 border rounded" required>\
+          <input id="password" type="password" placeholder="$\{texts[lang].password\}" class="w-full mb-4 p-3 border rounded" required>\
+          <button class="w-full bg-red-700 text-white py-3 rounded hover:bg-red-800">$\{texts[lang].submit\}</button>\
+        </form>\
+      `;\
+      document.getElementById("authForms").classList.remove("hidden");\
+    \}\
+\
+    function login(e) \{\
+      e.preventDefault();\
+      localStorage.setItem("user", document.getElementById("email").value);\
+      location.href = "dashboard.html";\
+    \}\
+  </script>\
+</body>\
+</html>}
